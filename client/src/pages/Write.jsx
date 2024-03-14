@@ -106,8 +106,10 @@ const Write = () => {
             Upload Image
           </label>
           <div className="buttons">
-            <button>Save as a draft</button>
-            <button onClick={handleClick}>Publish</button>
+            <button>Save</button>
+            <button onClick={handleClick}>
+              {state ? "Update" : "Publish"}
+            </button>
           </div>
         </div>
         <div className="item">

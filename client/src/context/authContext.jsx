@@ -5,8 +5,6 @@ export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
-
-  
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user") || null)
   );
@@ -18,6 +16,7 @@ export const AuthContextProvider = ({ children }) => {
       { withCredentials: true }
     );
     setCurrentUser(response.data);
+    console.log(response.data);
   };
 
   const logout = async () => {

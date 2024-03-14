@@ -91,7 +91,10 @@ $lightGreen: #b9e7e7;
           span {
             cursor: pointer;
           }
-
+          .username {
+            color: teal;
+            font-weight: bold;
+          }
           .write {
             background-color: $lightGreen;
             width: 50px;
@@ -127,6 +130,12 @@ $lightGreen: #b9e7e7;
       // img {
       //   width: 50px;
       // }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
 
     //HOME PAGE

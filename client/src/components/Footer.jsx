@@ -1,10 +1,8 @@
 const Footer = () => {
   return (
     <footer>
-      <h3>CAMBO BLOG</h3>
-      <span>
-        @Copyright 2024 <b>React Js</b>
-      </span>
+      <h3>NORAK BLOG</h3>
+      <span>@Copyright 2024</span>
     </footer>
   );
 };
