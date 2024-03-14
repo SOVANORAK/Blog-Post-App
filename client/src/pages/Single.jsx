@@ -18,7 +18,7 @@ const Single = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //Fetching Data from Posts Table
+    //Fetching single Data from Posts Table
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -59,7 +59,7 @@ const Single = () => {
           </div>
           {currentUser.username === post.username && (
             <div className="edit">
-              <Link to={`/write?edit=1`} state={post}>
+              <Link to={`/write?edit`} state={post}>
                 <img src={Edit} alt="edit" />
               </Link>
               <img src={Delete} alt="delete" onClick={handleDelete} />

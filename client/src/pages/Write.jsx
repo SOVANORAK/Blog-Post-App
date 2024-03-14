@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const Write = () => {
   //Use state to show old data in form
@@ -13,6 +14,8 @@ const Write = () => {
   const [value, setValue] = useState(state?.desc || "");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
+
+  const navigate = useNavigate();
 
   //Upload Image
   const upload = async () => {
@@ -29,16 +32,40 @@ const Write = () => {
     }
   };
 
-  //HandleClick
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = upload();
+    const imgUrl = await upload();
 
-    // try {
-    //   await
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      //If no state = create
+      if (!state) {
+        await axios.post(
+          `http://localhost:3000/api/posts/`,
+          {
+            title,
+            desc: value,
+            cat,
+            img: file ? imgUrl : "",
+            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          },
+          { withCredentials: true }
+        );
+      }
+      //if have state = edit or update
+      await axios.put(
+        `http://localhost:3000/api/posts/${state.id}`,
+        {
+          title,
+          desc: value,
+          cat,
+          img: file ? imgUrl : "",
+        },
+        { withCredentials: true }
+      );
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
