@@ -46,10 +46,16 @@ const Single = () => {
     }
   };
 
+  //html
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent;
+  };
+
   return (
     <div className="single">
       <div className="content">
-        <img src={post?.img} />
+        <img src={`../upload/${post.img}`} />
         <div className="user">
           {post.userImg && <img src={post.userImg} alt="User Profile" />}
 
@@ -68,7 +74,7 @@ const Single = () => {
         </div>
         <h1>{post.title}</h1>
         {/* React quill we dont need p tag */}
-        {post.desc}
+        {getText(post.desc)}
       </div>
       <Menu cat={post.cat} />
     </div>

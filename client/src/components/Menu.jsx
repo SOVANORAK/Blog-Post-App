@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Menu = ({ cat }) => {
@@ -9,7 +10,7 @@ const Menu = ({ cat }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/posts/?cat=${cat}` //get posts that belong to cat category. Example cat= art
+          `http://localhost:3000/api/posts/?cat=${cat}` //get posts that belong to that cat=category. Example cat= art
         );
         setPosts(response.data);
         console.log(response.data);
@@ -26,9 +27,13 @@ const Menu = ({ cat }) => {
       {/* Each post */}
       {posts.map((post) => (
         <div key={post.id} className="post">
-          <img src={post.img} alt="" />
+          <img src={`../upload/${post.img}`} alt="" />
           <h2>{post.title}</h2>
-          <button>Read more</button>
+          <button>
+            <Link className="link" to={`/post/${post.id}`}>
+              Read more
+            </Link>
+          </button>
         </div>
       ))}
     </div>

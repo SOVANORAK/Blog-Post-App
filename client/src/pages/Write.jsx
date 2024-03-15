@@ -12,7 +12,7 @@ const Write = () => {
 
   const [title, setTitle] = useState(state?.title || "");
   const [value, setValue] = useState(state?.desc || "");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState(state?.img || null);
   const [cat, setCat] = useState(state?.cat || "");
 
   const navigate = useNavigate();
@@ -50,7 +50,9 @@ const Write = () => {
           },
           { withCredentials: true }
         );
+        navigate("/");
       }
+
       //if have state = edit or update
       await axios.put(
         `http://localhost:3000/api/posts/${state.id}`,
