@@ -12,7 +12,7 @@ const Write = () => {
 
   const [title, setTitle] = useState(state?.title || "");
   const [value, setValue] = useState(state?.desc || "");
-  const [file, setFile] = useState(state?.img || null);
+  const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
 
   const navigate = useNavigate();
